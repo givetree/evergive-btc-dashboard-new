@@ -4,6 +4,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuIcon = document.getElementById('nav-mobile-menu-icon');
     const mobileDropdown = document.getElementById('nav-mobile-dropdown');
 
+    function getTotalsFromTable() {
+        let totalDonated = 0;
+        let totalBtcHeld = 0;
+        const table = document.getElementById('transactions-table');
+        if (table) {
+            const rows = table.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                const btcCell = row.cells[2];
+                const usdCell = row.cells[3];
+                if (btcCell && usdCell) {
+                    const btc = parseFloat(btcCell.textContent.replace(/[^\d.\-]/g, ''));
+                    const usd = parseFloat(usdCell.textContent.replace(/[^\d.\-]/g, ''));
+                    if (!isNaN(btc)) totalBtcHeld += btc;
+                    if (!isNaN(usd)) totalDonated += usd;
+                }
+            });
+        }
+        return { totalDonated, totalBtcHeld };
+    }
+
     if (mobileMenuBtn && mobileDropdown) {
         mobileMenuBtn.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -22,6 +42,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateBtcPriceAndReserve() {
+        const { totalDonated, totalBtcHeld } = getTotalsFromTable();
+        // Update Total Donated
+        const totalDonatedElem = document.getElementById('total-invested');
+        if (totalDonatedElem) {
+            totalDonatedElem.textContent = '$' + Math.round(totalDonated).toLocaleString('en-US');
+        }
+        // Update Total BTC Held
+        const totalBtcElem = document.getElementById('total-btc-held');
+        if (totalBtcElem) {
+            totalBtcElem.textContent = totalBtcHeld.toFixed(2) + '\u20BF';
+        }
         fetch('https://api.coinbase.com/v2/prices/BTC-USD/spot')
             .then(response => response.json())
             .then(data => {
@@ -39,12 +70,24 @@ document.addEventListener('DOMContentLoaded', function() {
                         btcPriceInfo.innerHTML = btcPriceInfo.innerHTML.replace(/Current: \$[\d,]+/, 'Current: ' + formatted);
                     }
                     // Update CURRENT CHARITY RESERVE VALUE
-                    const totalBtcHeld = 12.62;
                     const reserveValue = price * totalBtcHeld;
                     const reserveFormatted = '$' + Math.round(reserveValue).toLocaleString('en-US');
                     const reserveValueElem = document.getElementById('current-investment-value');
                     if (reserveValueElem) {
                         reserveValueElem.textContent = reserveFormatted;
+                    }
+                    // Update PERFORMANCE
+                    const perfValue = reserveValue - totalDonated;
+                    const perfPercent = (perfValue / totalDonated) * 100;
+                    const perfPercentElem = document.getElementById('performance-percent');
+                    const perfChangeElem = document.getElementById('performance-change');
+                    if (perfPercentElem) {
+                        const sign = perfPercent >= 0 ? '+' : '';
+                        perfPercentElem.textContent = sign + perfPercent.toFixed(2) + '%';
+                    }
+                    if (perfChangeElem) {
+                        const sign = perfValue >= 0 ? '+' : '';
+                        perfChangeElem.textContent = `(${sign}$${Math.round(Math.abs(perfValue)).toLocaleString('en-US')})`;
                     }
                 }
             })
