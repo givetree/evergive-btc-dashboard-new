@@ -1,0 +1,449 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: #fff;
+    color: #111;
+}
+
+/* Navigation styles */
+.top-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem 3rem 1.5rem 3rem;
+    background: #fff;
+    box-shadow: 0 1px 0 #eee;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-left-links, .nav-right-links {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+}
+
+.nav-left-links {
+    flex: 1;
+    justify-content: flex-start;
+}
+
+.nav-right-links {
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.nav-left-links a, .nav-right-links a {
+    text-decoration: none;
+    color: #111;
+    font-weight: 600;
+    font-size: 1.15rem;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+}
+
+.nav-left-links a:hover, .nav-right-links a:hover {
+    color: #01422E;
+}
+
+.nav-center-logo {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 180px;
+}
+
+.evergive-logo-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.evergive-logo-svg {
+    height: 48px;
+    width: auto;
+    display: block;
+}
+
+.donate-btn {
+    border: 2px solid #01422E;
+    color: #01422E !important;
+    background: #fff;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-radius: 999px;
+    padding: 0.5rem 2rem;
+    transition: background 0.2s, color 0.2s;
+    letter-spacing: 0.04em;
+}
+.donate-btn:hover {
+    background: #01422E;
+    color: #fff !important;
+}
+
+/* Remove mobile menu for desktop */
+.nav-mobile-menu-btn, .nav-mobile-dropdown { display: none !important; }
+
+/* Metrics Section */
+.dashboard-hero {
+    margin: 0 auto;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    max-width: 1100px;
+    background: #fff;
+    border-radius: 0.75rem;
+    box-shadow: none;
+    padding: 0 0 2rem 0;
+}
+
+.metrics-vertical-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 1.5rem;
+}
+
+.metric-block {
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.metric-title {
+    font-size: 1.15rem;
+    color: #666;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.5rem;
+}
+
+.metric-value {
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.01em;
+}
+
+.metric-value-main {
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1.05;
+}
+
+.metric-value-btc {
+    font-size: 2.2rem;
+    font-weight: 600;
+    line-height: 1.1;
+}
+
+.metric-value-secondary {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.performance-green {
+    color: #0a8a4a;
+}
+#performance .performance-change {
+    font-size: 1.2rem;
+    color: #0a8a4a;
+    font-weight: 600;
+    margin-top: 0.2rem;
+}
+
+/* Desktop metrics row */
+.metrics-row-desktop { display: flex; }
+.metrics-row-mobile, .metric-mobile-full-row { display: none; }
+
+.metrics-row-vertical {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 7rem;
+    margin-top: 1.5rem;
+}
+.metric-item {
+    text-align: center;
+    flex: 1 1 0;
+}
+
+/* Make avg/current price values smaller and more compact */
+.metric-item-right .metric-value-secondary {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+.metric-item-right .metric-value-secondary br {
+    display: none;
+}
+.metric-item-right .metric-value-secondary span {
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+/* Mission Section */
+.evergive-mission {
+    background: #f7faf9;
+    border-radius: 2rem;
+    margin: 0 auto 3rem auto;
+    max-width: 900px;
+    padding: 3rem 2rem 2.5rem 2rem;
+    box-shadow: 0 4px 32px 0 rgba(1,66,46,0.06);
+    text-align: center;
+}
+.mission-content h2 {
+    font-size: 2.1rem;
+    font-weight: 700;
+    color: #01422E;
+    margin-bottom: 2.5rem;
+    line-height: 1.25;
+}
+.mission-cta {
+    display: inline-block;
+    background: #01422E;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.25rem;
+    border-radius: 999px;
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    margin-bottom: 1.5rem;
+    margin-top: 0.5rem;
+    box-shadow: 0 2px 8px 0 rgba(1,66,46,0.08);
+    transition: background 0.2s, color 0.2s;
+}
+.mission-cta:hover {
+    background: #0a8a4a;
+    color: #fff;
+}
+.mission-subtext {
+    color: #01422E;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+.mission-learn-more {
+    color: #01422E;
+    text-decoration: underline;
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+
+/* Table Section */
+.transactions-section {
+    margin: 0 auto 3rem auto;
+    max-width: 1100px;
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 32px 0 rgba(1,66,46,0.06);
+    padding: 2.5rem 2rem 2rem 2rem;
+}
+.transactions-section h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #111;
+    text-align: left;
+}
+#transactions-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: #fff;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 2px 8px 0 rgba(1,66,46,0.04);
+}
+#transactions-table th, #transactions-table td {
+    padding: 1.1rem 1.5rem;
+    text-align: left;
+    font-size: 1.15rem;
+}
+#transactions-table th {
+    background: #f7faf9;
+    font-weight: 700;
+    color: #222;
+    border-bottom: 2px solid #e0e0e0;
+}
+#transactions-table td {
+    font-weight: 500;
+    color: #222;
+    border-bottom: 1px solid #f0f0f0;
+}
+#transactions-table tr:last-child td {
+    border-bottom: none;
+}
+#transactions-table tr:hover {
+    background: #f7faf9;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .nav-left-links, .nav-right-links { display: none !important; }
+    .nav-mobile-menu-btn {
+        display: block !important;
+        position: absolute;
+        right: 1.5rem;
+        top: 1.2rem;
+        background: none;
+        border: none;
+        font-size: 2.2rem;
+        color: #01422E;
+        z-index: 2100;
+        cursor: pointer;
+    }
+    .nav-center-logo {
+        flex: 1 1 100%;
+        justify-content: center;
+    }
+    .nav-mobile-dropdown {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: #fff;
+        z-index: 2000;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2.5rem;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+        box-shadow: none;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s;
+    }
+    .nav-mobile-dropdown.active {
+        display: flex;
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .nav-mobile-dropdown a {
+        color: #111;
+        font-weight: 700;
+        font-size: 2.2rem;
+        text-decoration: none;
+        margin: 0;
+        padding: 0;
+        letter-spacing: 0.04em;
+    }
+    .nav-mobile-dropdown .donate-btn {
+        border: 2px solid #01422E;
+        color: #01422E !important;
+        background: #fff;
+        font-size: 2.2rem;
+        border-radius: 999px;
+        padding: 0.5rem 2.5rem;
+        margin-top: 1.5rem;
+        font-weight: 700;
+    }
+    .dashboard-hero, .transactions-section { padding: 1rem; }
+    .evergive-mission { padding: 2rem 1rem; }
+    .metrics-row-desktop { display: none !important; }
+    .metrics-row-mobile, .metric-mobile-full-row { display: flex !important; }
+    .metric-mobile-half {
+        width: 50%;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+        margin-bottom: 0;
+        vertical-align: top;
+    }
+    .metric-mobile-full {
+        width: 100%;
+        display: block;
+        margin-top: 0;
+        text-align: center;
+    }
+    .metrics-row-responsive {
+        flex-wrap: wrap !important;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 0.5rem;
+        margin-top: 1.5rem;
+    }
+    .metric-mobile-half {
+        width: 50% !important;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+        margin-bottom: 0;
+        vertical-align: top;
+        order: 1;
+    }
+    .metric-mobile-full {
+        flex-basis: 100% !important;
+        width: 100% !important;
+        display: block !important;
+        margin-top: 0.5rem !important;
+        text-align: center !important;
+        order: 2 !important;
+    }
+}
+@media (max-width: 600px) {
+    .dashboard-hero, .transactions-section, .evergive-mission { max-width: 100%; border-radius: 0.5rem; }
+    .transactions-section h2 { font-size: 1.3rem; }
+    .metric-value-main { font-size: 2.5rem; }
+    .metric-value-btc { font-size: 1.2rem; }
+    .metric-value-secondary { font-size: 1.3rem; }
+    .mission-content h2 { font-size: 1.2rem; }
+}
+
+.metrics-row-responsive {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 4rem;
+    margin-top: 1.5rem;
+}
+@media (max-width: 900px) {
+    .metrics-row-responsive {
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 0.5rem;
+        margin-top: 1.5rem;
+    }
+    .metric-mobile-half {
+        width: 50%;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+        margin-bottom: 0;
+        vertical-align: top;
+    }
+    .metric-mobile-full {
+        width: 100%;
+        display: block;
+        margin-top: 0.5rem;
+        text-align: center;
+        order: 2;
+    }
+    .metric-mobile-half {
+        order: 1;
+    }
+} 
