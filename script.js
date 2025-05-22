@@ -20,6 +20,41 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    function updateBtcPriceAndReserve() {
+        fetch('https://api.coinbase.com/v2/prices/BTC-USD/spot')
+            .then(response => response.json())
+            .then(data => {
+                const price = data.data && data.data.amount ? parseFloat(data.data.amount) : null;
+                if (price) {
+                    // Format price with commas
+                    const formatted = '$' + price.toLocaleString('en-US', { maximumFractionDigits: 0 });
+                    // Update all elements with class 'btc-current-price'
+                    document.querySelectorAll('.btc-current-price').forEach(el => {
+                        el.textContent = formatted;
+                    });
+                    // Also update the inline text in btc-price-info for fallback
+                    const btcPriceInfo = document.getElementById('btc-price-info');
+                    if (btcPriceInfo) {
+                        btcPriceInfo.innerHTML = btcPriceInfo.innerHTML.replace(/Current: \$[\d,]+/, 'Current: ' + formatted);
+                    }
+                    // Update CURRENT CHARITY RESERVE VALUE
+                    const totalBtcHeld = 12.62;
+                    const reserveValue = price * totalBtcHeld;
+                    const reserveFormatted = '$' + Math.round(reserveValue).toLocaleString('en-US');
+                    const reserveValueElem = document.getElementById('current-investment-value');
+                    if (reserveValueElem) {
+                        reserveValueElem.textContent = reserveFormatted;
+                    }
+                }
+            })
+            .catch(err => console.error('Failed to fetch BTC price:', err));
+    }
+
+    // Initial fetch
+    updateBtcPriceAndReserve();
+    // Update every 5 seconds
+    setInterval(updateBtcPriceAndReserve, 5000);
 });
 
 // Placeholder for future dynamic content updates
