@@ -43,6 +43,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function updateBtcPriceAndReserve() {
         const { totalDonated, totalBtcHeld } = getTotalsFromTable();
+        // Calculate average BTC price
+        const averageBtcPrice = totalDonated / totalBtcHeld;
+        
         // Update Total Donated
         const totalDonatedElem = document.getElementById('total-invested');
         if (totalDonatedElem) {
@@ -67,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Also update the inline text in btc-price-info for fallback
                     const btcPriceInfo = document.getElementById('btc-price-info');
                     if (btcPriceInfo) {
-                        btcPriceInfo.innerHTML = btcPriceInfo.innerHTML.replace(/Current: \$[\d,]+/, 'Current: ' + formatted);
+                        btcPriceInfo.innerHTML = `<span>Avg: $${Math.round(averageBtcPrice).toLocaleString('en-US')}</span><span>Current: <span class="btc-current-price">${formatted}</span></span>`;
                     }
                     // Update CURRENT CHARITY RESERVE VALUE
                     const reserveValue = price * totalBtcHeld;
